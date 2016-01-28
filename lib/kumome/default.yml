@@ -1,0 +1,53 @@
+---
+resources:
+  ec2:
+    namespace: AWS/EC2 # required
+    dimensions_name: InstanceId # required
+    metrics:
+      cpu:
+        metric_name: CPUUtilization # required
+        statistic: Average # required
+        unit: Percent
+        alarm: '>=50' # "metric alarm name" or "operator and number"
+      netin:
+        metric_name: NetworkIn
+        statistic: Average
+        unit: Bytes
+      netout:
+        metric_name: NetworkOut 
+        statistic: Average
+        unit: Bytes
+  rds:
+    namespace: AWS/RDS
+    dimensions_name: DBInstanceIdentifier
+    metrics:
+      cpu:
+        metric_name: CPUUtilization
+        statistic: Average
+        unit: Percent
+        alarm: '>=50'
+      read:
+        metric_name: ReadIOPS
+        statistic: Average
+        unit: Count/Second
+      write:
+        metric_name: WriteIOPS
+        statistic: Average
+      conn:
+        metric_name: DatabaseConnections
+        statistic: Average
+        unit: Count
+        alarm: '>=50'
+  elb:
+    namespace: AWS/ELB
+    dimensions_name: LoadBalancerName
+    metrics:
+      req:
+        metric_name: RequestCount
+        statistic: Sum
+      400:
+        metric_name: HTTPCode_Backend_4XX
+        statistic: Sum
+      500:
+        metric_name: HTTPCode_Backend_5XX
+        statistic: Sum
