@@ -43,8 +43,12 @@ EOF
 ### STEP 2. Show AWS resource statistics
 
 ```sh
-$ kumome --ec2=i-123ab45c --rds=my-rds --elb=my-elb --profile mycreds
+$ kumome --ec2=i-123ab45c,i-890ed12c --rds=my-rds --elb=my-elb --profile mycreds
 ```
+
+## TODO
+
+- `tailf` option
 
 ## Contributing
 

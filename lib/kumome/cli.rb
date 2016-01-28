@@ -22,7 +22,7 @@ module Kumome
       Kumome::Option.load(options)
       data = Kumome::Stat.data
       out_table(data)
-      # @TODO tail stat
+      # @TODO tailf stat
     end
 
     desc 'config', 'Out config.yml'
