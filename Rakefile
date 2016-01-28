@@ -5,3 +5,7 @@ begin
   require 'octorelease'
 rescue LoadError
 end
+
+RSpec::Core::RakeTask.new(:spec)
+
+task default: :spec
