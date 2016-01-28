@@ -20,6 +20,32 @@ Or install it yourself as:
 
 ## Getting Started
 
+### STEP 1. Set AWS credentials
+
+#### 1-1. Use Shared Credentials
+
+```sh
+$ aws configure
+
+...
+```
+
+#### 1-2. Use secrets.yml
+
+```sh
+$ cat <<EOF > spec/secrets.yml
+region: ap-northeast-1
+aws_access_key_id: XXXXXXXXXXXXXXXXXXXX
+aws_secret_access_key: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+EOF
+```
+
+### STEP 2. Show AWS resource statistics
+
+```sh
+$ kumome --ec2=i-123ab45c --rds=my-rds --elb=my-elb --profile mycreds
+```
+
 ## Contributing
 
 1. Fork it ( https://github.com/k1LoW/kumome/fork )
