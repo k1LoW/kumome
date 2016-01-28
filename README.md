@@ -1,4 +1,4 @@
-# Kumome [![Gem](https://img.shields.io/gem/v/awsecrets.svg)](https://rubygems.org/gems/kumome)
+# Kumome [![Gem](https://img.shields.io/gem/v/kumome.svg)](https://rubygems.org/gems/kumome)
 
 Resource statistics tool via AWS CloudWatch.
 
