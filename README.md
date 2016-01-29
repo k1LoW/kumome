@@ -2,7 +2,7 @@
 
 Resource statistics tool via AWS CloudWatch.
 
-[![asciicast](https://asciinema.org/a/35035.png)](https://asciinema.org/a/35035)
+[![asciicast](https://asciinema.org/a/35035.png)](https://asciinema.org/a/35035?speed=5&autoplay=1)
 
 ## Installation
 
