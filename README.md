@@ -67,6 +67,9 @@ Options:
 Show AWS resource statistics
 ```
 
+If you show command config YAML, run `kumome config`.
+
+
 ## Custom command options
 
 Write `custom.yml`.
@@ -94,7 +97,7 @@ resources:
 ```
 ( See https://docs.aws.amazon.com/lambda/latest/dg/monitoring-functions-metrics.html )
 
-And use `--config1 option.
+And use `--config` option.
 
 ```sh
 $ kumome --config=./custom.yml
