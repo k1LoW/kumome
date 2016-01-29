@@ -1,6 +1,6 @@
 ---
 resources:
-  ec2:
+  ec2: # "command option name"
     namespace: AWS/EC2 # required
     dimensions_name: InstanceId # required
     metrics:

@@ -67,6 +67,52 @@ Options:
 Show AWS resource statistics
 ```
 
+## Custom command options
+
+Write `custom.yml`.
+
+```yaml
+---
+resources:
+  lambda: # "command option name"
+    namespace: AWS/Lambda # required
+    dimensions_name: FunctionName # required
+    metrics:
+      count:
+        metric_name: Invocations # required
+        statistic: Sum # required
+        unit: Count
+        alarm: '>=100' # "metric alarm name" or "operator and number"
+      error:
+        metric_name: Errors
+        statistic: Sum
+        unit: Count
+        alarm: '>=5'
+      duration:
+        metric_name: Duration
+        statistic: Average
+```
+( See https://docs.aws.amazon.com/lambda/latest/dg/monitoring-functions-metrics.html )
+
+And use `--config1 option.
+
+```sh
+$ kumome --config=./custom.yml
+Usage:
+kumome    # OR: `kumome stat`
+
+Options:
+[--lambda=FunctionName,..]
+[--profile=PROFILE]
+[--period=N]
+                    # Default: 300
+[--config=CONFIG]
+
+Show AWS resource statistics
+
+$ kumome --config=./custom.yml --lambda=my-lambda-func-name,hook-lambda-func-name --profile mycreds
+```
+
 ## TODO
 
 - `tailf` option
