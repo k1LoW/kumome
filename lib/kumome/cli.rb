@@ -38,29 +38,13 @@ module Kumome
     private
 
     def out_table(data)
-      ids = {}
-      metrics_header = {}
-      Kumome::Config.config['resources'].each do |resource_name, resource|
-        next if options[resource_name.to_sym].nil?
-        options[resource_name.to_sym].split(',').each do |id|
-          ids[id] = resource['metrics'].size
-          resource['metrics'].each do |name, _metric|
-            key = resource_name + id + name.to_s
-            metrics_header[key] = name.to_s
-          end
-        end
-      end
-      header = ['']
-      ids.each do |id, colspan|
-        header << { value: id, colspan: colspan, alignment: :center }
-      end
-      t = table(header)
+      t = table(build_header)
       t.style = { alignment: :right, border_x: '-' }
-      t << metrics_header.values.unshift(:timestamp)
+      t << @metrics_header.values.unshift(:timestamp)
       t << :separator
       data.sort_by { |k, _| k.to_i }.each do |timestamp, d|
         line = [timestamp]
-        metrics_header.each_key do |h|
+        @metrics_header.each_key do |h|
           l = if d.key?(h)
                 d[h]
               else
@@ -75,6 +59,26 @@ module Kumome
       lines.each do |line|
         puts line
       end
+    end
+
+    def build_header
+      resource_header = {}
+      @metrics_header = {}
+      Kumome::Config.config['resources'].each do |resource_name, resource|
+        next if options[resource_name.to_sym].nil?
+        options[resource_name.to_sym].split(',').each do |id|
+          resource_header[id] = resource['metrics'].size
+          resource['metrics'].each do |name, _metric|
+            key = resource_name + id + name.to_s
+            @metrics_header[key] = name.to_s
+          end
+        end
+      end
+      header = ['']
+      resource_header.each do |id, colspan|
+        header << { value: id, colspan: colspan, alignment: :center }
+      end
+      header
     end
   end
 end
