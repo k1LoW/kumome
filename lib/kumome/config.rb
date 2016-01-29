@@ -12,11 +12,11 @@ module Kumome
         arg =~ /\A(--config=?|-c=?).*\z/
       end
       if config_option
-        if config_option =~ /=/
-          config_path = config_option.gsub(/\A(--config=?|-c=?)/, '')
-        else
-          config_path = argv[argv.index(config_option) + 1]
-        end
+        config_path = if config_option =~ /=/
+                        config_option.gsub(/\A(--config=?|-c=?)/, '')
+                      else
+                        argv[argv.index(config_option) + 1]
+                      end
       end
       config_path = default_config_path if config_path.nil?
       config_path

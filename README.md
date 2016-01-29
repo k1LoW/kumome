@@ -2,6 +2,8 @@
 
 Resource statistics tool via AWS CloudWatch.
 
+[![asciicast](https://asciinema.org/a/35035.png)](https://asciinema.org/a/35035)
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -44,6 +46,25 @@ EOF
 
 ```sh
 $ kumome --ec2=i-123ab45c,i-890ed12c --rds=my-rds --elb=my-elb --profile mycreds
+```
+
+## (Default) Command options
+
+```sh
+$ kumome
+Usage:
+kumome    # OR: `kumome stat`
+
+Options:
+[--ec2=InstanceId,..]
+[--rds=DBInstanceIdentifier,..]
+[--elb=LoadBalancerName,..]
+[--profile=PROFILE]
+[--period=N]
+                    # Default: 300
+[--config=CONFIG]
+
+Show AWS resource statistics
 ```
 
 ## TODO

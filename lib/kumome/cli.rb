@@ -1,4 +1,5 @@
 require 'thor'
+require 'kumome/ext/thor'
 require 'terminal-table/import'
 require 'term/ansicolor'
 include Term::ANSIColor
@@ -7,19 +8,23 @@ module Kumome
   include Term::ANSIColor
 
   class CLI < Thor
-    class_option :profile
-    class_option :period, type: :numeric, default: 300
     class_option :config, type: :string
     default_command :stat
 
     Kumome::Config.load
 
     desc 'stat', 'Show AWS resource statistics'
-    Kumome::Config.config['resources'].each_key do |r|
-      option r, type: :string
+    Kumome::Config.config['resources'].each do |r, config|
+      option r, type: :string, banner: config['dimensions_name'] + ',..'
     end
+    option :profile
+    option :period, type: :numeric, default: 300
     def stat
       Kumome::Option.load(options)
+      unless Kumome::Option.selected_resource_options?
+        help('stat')
+        return
+      end
       data = Kumome::Stat.data
       out_table(data)
       # @TODO tailf stat
@@ -56,11 +61,12 @@ module Kumome
       data.sort_by { |k, _| k.to_i }.each do |timestamp, d|
         line = [timestamp]
         metrics_header.each_key do |h|
-          if d.key?(h)
-            line << d[h]
-          else
-            line << ''
-          end
+          l = if d.key?(h)
+                d[h]
+              else
+                ''
+              end
+          line << l
         end
         t << line
       end
