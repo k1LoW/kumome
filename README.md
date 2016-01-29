@@ -2,7 +2,7 @@
 
 Resource statistics tool via AWS CloudWatch.
 
-[![asciicast](https://asciinema.org/a/35035.png)](https://asciinema.org/a/35035?speed=5&autoplay=1)
+[![asciicast](https://asciinema.org/a/35090.png)](https://asciinema.org/a/35090?speed=5&autoplay=1)
 
 ## Installation
 
@@ -68,7 +68,6 @@ Show AWS resource statistics
 ```
 
 If you show command config YAML, run `kumome config`.
-
 
 ## Custom command options
 
