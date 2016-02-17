@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ## Getting Started
 
-### STEP 1. Set AWS credentials
+### STEP 1. Set AWS config
 
 #### 1-1. Use Shared Credentials
 
@@ -31,6 +31,8 @@ $ aws configure
 
 ...
 ```
+
+(See http://docs.aws.amazon.com/ja_jp/cli/latest/userguide/cli-chap-getting-started.html#config-settings-and-precedence)
 
 #### 1-2. Use secrets.yml
 

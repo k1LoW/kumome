@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_runtime_dependency 'aws-sdk', '~> 2.1'
-  spec.add_runtime_dependency 'awsecrets'
+  spec.add_runtime_dependency 'awsecrets', '~> 1'
   spec.add_runtime_dependency 'thor'
   spec.add_runtime_dependency 'activesupport'
   spec.add_runtime_dependency 'terminal-table'
